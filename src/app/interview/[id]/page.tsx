@@ -45,7 +45,7 @@ export default async function InterviewPage({ params }: Props) {
             </div>
           )}
           <div>
-            <div className="flex items-center gap-2.5 mb-3.5">
+            <div className="flex items-center gap-2.5 mb-3.5 flex-wrap">
               <span className="font-ui text-[10px] font-semibold tracking-[0.1em] uppercase text-[var(--red)]">
                 {interview.category}
               </span>
@@ -53,6 +53,22 @@ export default async function InterviewPage({ params }: Props) {
               <span className="font-ui text-[11px] text-[var(--grey-600)]">
                 {interview.date}
               </span>
+              {interview.archive && (
+                <>
+                  <span className="font-ui text-[11px] text-[var(--grey-400)]">·</span>
+                  <span className="font-ui text-[10px] font-semibold tracking-[0.06em] uppercase text-[var(--grey-600)] bg-[var(--grey-200)] px-2 py-0.5 rounded-sm">
+                    From the Archive
+                  </span>
+                </>
+              )}
+              {interview.issue && (
+                <>
+                  <span className="font-ui text-[11px] text-[var(--grey-400)]">·</span>
+                  <span className="font-ui text-[11px] text-[var(--grey-600)] italic">
+                    {interview.issue}
+                  </span>
+                </>
+              )}
             </div>
             <p className="font-display text-[13px] italic text-[var(--red)] mb-2">
               10 Things I Know
@@ -118,6 +134,17 @@ export default async function InterviewPage({ params }: Props) {
           ))}
         </div>
       </div>
+
+      {/* Archive disclaimer */}
+      {interview.archive && (
+        <div className="max-w-[640px] mx-auto px-4 sm:px-8 pt-4">
+          <div className="border border-[var(--grey-300)] rounded-sm p-4 bg-[var(--grey-100)]">
+            <p className="font-ui text-[12px] text-[var(--grey-600)] leading-relaxed">
+              <span className="font-semibold">From the Archive</span> &mdash; This interview was originally published in {interview.issue || "Global Innovation Magazine"} ({interview.date}). Roles, titles, and views expressed were accurate at the time of the original interview and may have since changed.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Subscribe + Get Featured */}
       <div className="max-w-[640px] mx-auto px-4 sm:px-8 pt-4 pb-6">

@@ -34,7 +34,7 @@ export default function HomePage() {
             </div>
           )}
           <div>
-            <div className="flex items-center gap-2.5 mb-3">
+            <div className="flex items-center gap-2.5 mb-3 flex-wrap">
               <span className="font-ui text-[10px] font-semibold tracking-[0.1em] uppercase text-[var(--red)]">
                 {hero.category}
               </span>
@@ -42,6 +42,14 @@ export default function HomePage() {
               <span className="font-display text-[12px] italic text-[var(--grey-600)]">
                 10 Things I Know
               </span>
+              {hero.archive && (
+                <>
+                  <span className="font-ui text-[11px] text-[var(--grey-400)]">·</span>
+                  <span className="font-ui text-[10px] font-semibold tracking-[0.06em] uppercase text-[var(--grey-600)] bg-[var(--grey-200)] px-2 py-0.5 rounded-sm">
+                    From the Archive
+                  </span>
+                </>
+              )}
             </div>
             <h1 className="font-display text-3xl md:text-[40px] font-black text-[var(--ink)] leading-[1.15] tracking-tight mb-2.5">
               {hero.name}, {hero.descriptor}
@@ -189,6 +197,9 @@ export default function HomePage() {
           </Link>
           <Link href="/partners" className="font-ui text-[11px] text-[var(--grey-500)] no-underline hover:text-[var(--ink)]">
             Partners
+          </Link>
+          <Link href="/terms" className="font-ui text-[11px] text-[var(--grey-500)] no-underline hover:text-[var(--ink)]">
+            Terms & Privacy
           </Link>
           <span className="font-ui text-[11px] text-[var(--grey-500)]">
             Leicester, UK · Since 2013
