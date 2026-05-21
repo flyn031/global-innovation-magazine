@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getInterview, SAMPLE_INTERVIEWS } from "@/lib/interviews";
+import SubscribeForm from "@/components/SubscribeForm";
 import type { Metadata } from "next";
 
 type Props = { params: Promise<{ id: string }> };
@@ -118,14 +119,31 @@ export default async function InterviewPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Back */}
-      <div className="max-w-[640px] mx-auto px-4 sm:px-8 pb-16">
-        <Link
-          href="/"
-          className="inline-block border border-[var(--grey-400)] text-[var(--grey-700)] no-underline px-4 py-2 rounded-sm font-ui text-[13px] font-medium hover:border-[var(--grey-600)]"
-        >
-          ← Back to all interviews
-        </Link>
+      {/* Subscribe + Get Featured */}
+      <div className="max-w-[640px] mx-auto px-4 sm:px-8 pt-4 pb-6">
+        <div className="bg-[var(--grey-100)] border border-[var(--grey-300)] rounded-sm p-6 mb-6">
+          <h3 className="font-display text-[15px] font-bold text-[var(--ink)] mb-1">
+            Enjoyed this interview?
+          </h3>
+          <p className="font-body text-[13px] text-[var(--grey-600)] italic mb-3">
+            Get every &ldquo;10 Things I Know&rdquo; interview in your inbox. Free, fortnightly.
+          </p>
+          <SubscribeForm source={`interview-${interview.id}`} variant="minimal" />
+        </div>
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <Link
+            href="/"
+            className="inline-block border border-[var(--grey-400)] text-[var(--grey-700)] no-underline px-4 py-2 rounded-sm font-ui text-[13px] font-medium hover:border-[var(--grey-600)]"
+          >
+            ← Back to all interviews
+          </Link>
+          <Link
+            href="/get-featured"
+            className="inline-block font-ui text-[13px] text-[var(--red)] no-underline hover:underline"
+          >
+            Want to be featured? →
+          </Link>
+        </div>
       </div>
     </>
   );

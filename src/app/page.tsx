@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { SAMPLE_INTERVIEWS } from "@/lib/interviews";
+import SubscribeForm from "@/components/SubscribeForm";
 
 export default function HomePage() {
   const hero = SAMPLE_INTERVIEWS[0];
@@ -24,7 +24,7 @@ export default function HomePage() {
       <Link href={`/interview/${hero.id}`} className="block no-underline">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 border-b border-[var(--grey-300)] grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 items-center">
           {hero.photo && (
-            <div className="w-full aspect-[4/5] rounded overflow-hidden bg-[var(--grey-300)] relative">
+            <div className="w-full aspect-[4/5] rounded overflow-hidden bg-[var(--grey-300)]">
               <img
                 src={hero.photo}
                 alt={hero.name}
@@ -63,6 +63,23 @@ export default function HomePage() {
         </div>
       </Link>
 
+      {/* Newsletter inline banner */}
+      <div className="border-b border-[var(--grey-300)] bg-[var(--grey-100)]">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+          <div className="flex-shrink-0">
+            <span className="font-display text-[14px] font-bold text-[var(--ink)]">
+              Get every interview in your inbox.
+            </span>
+            <span className="font-body text-[13px] text-[var(--grey-600)] italic ml-2">
+              Free, fortnightly.
+            </span>
+          </div>
+          <div className="flex-1 w-full sm:max-w-[360px]">
+            <SubscribeForm source="homepage-inline" variant="minimal" />
+          </div>
+        </div>
+      </div>
+
       {/* Section header */}
       <div className="max-w-[1100px] mx-auto px-4 sm:px-8 pt-7">
         <h2 className="font-display text-base font-bold text-[var(--ink)] mb-6 pb-2 border-b-2 border-[var(--ink)] inline-block">
@@ -71,7 +88,7 @@ export default function HomePage() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 pb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-7">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 pb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-7">
         {rest.map((interview) => (
           <Link
             key={interview.id}
@@ -110,23 +127,53 @@ export default function HomePage() {
         ))}
       </div>
 
-      {/* CTA */}
-      <div className="bg-[var(--ink)] px-4 sm:px-8 py-11">
-        <div className="max-w-[1100px] mx-auto flex items-center justify-between flex-wrap gap-5">
+      {/* Get Featured CTA */}
+      <div className="border-t border-[var(--grey-300)]">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 className="font-display text-2xl font-extrabold text-[var(--cream)] tracking-tight mb-1">
-              What do you know?
+            <span className="font-display text-[12px] italic text-[var(--red)]">
+              Get Featured
+            </span>
+            <h3 className="font-display text-2xl font-extrabold text-[var(--ink)] tracking-tight mt-1 mb-2">
+              Your story, professionally told.
             </h3>
-            <p className="font-body text-[15px] text-[var(--cream)]/45 italic">
-              We&apos;re looking for founders and innovators with something worth
-              sharing.
+            <p className="font-body text-[15px] text-[var(--grey-700)] leading-relaxed">
+              A &ldquo;10 Things I Know&rdquo; feature gives you a professionally
+              written interview, social media assets, newsletter distribution,
+              and a permanent backlink. From £199.
             </p>
           </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link
+              href="/get-featured"
+              className="bg-[var(--red)] hover:bg-[var(--red-dark)] text-white no-underline text-center px-6 py-3 rounded-sm font-ui text-[13px] font-semibold"
+            >
+              See Pricing →
+            </Link>
+            <Link
+              href="/contribute"
+              className="border border-[var(--grey-400)] hover:border-[var(--grey-600)] text-[var(--ink)] no-underline text-center px-6 py-3 rounded-sm font-ui text-[13px] font-medium"
+            >
+              Submit Free
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Subscribe banner */}
+      <SubscribeForm source="homepage-footer" variant="banner" />
+
+      {/* Partner strip — empty state for now */}
+      <div className="border-t border-[var(--grey-300)] bg-[var(--grey-100)]">
+        <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
+          <span className="font-ui text-[11px] text-[var(--grey-500)]">
+            Innovation Partners
+          </span>
           <Link
-            href="/contribute"
-            className="bg-[var(--red)] hover:bg-[var(--red-dark)] text-white no-underline px-7 py-3 rounded-sm font-ui text-[13px] font-semibold tracking-wide"
+            href="/partners"
+            className="font-ui text-[11px] text-[var(--red)] no-underline hover:underline"
           >
-            Contribute Your Interview
+            Become a partner →
           </Link>
         </div>
       </div>
@@ -136,9 +183,17 @@ export default function HomePage() {
         <span className="font-ui text-[11px] text-[var(--grey-500)]">
           © 2026 Global Innovation Magazine
         </span>
-        <span className="font-ui text-[11px] text-[var(--grey-500)]">
-          Leicester, UK · Since 2013
-        </span>
+        <div className="flex gap-4">
+          <Link href="/newsletter" className="font-ui text-[11px] text-[var(--grey-500)] no-underline hover:text-[var(--ink)]">
+            Newsletter
+          </Link>
+          <Link href="/partners" className="font-ui text-[11px] text-[var(--grey-500)] no-underline hover:text-[var(--ink)]">
+            Partners
+          </Link>
+          <span className="font-ui text-[11px] text-[var(--grey-500)]">
+            Leicester, UK · Since 2013
+          </span>
+        </div>
       </footer>
     </>
   );
