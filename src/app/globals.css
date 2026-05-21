@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+:root {
+  --cream: #fcfaf7;
+  --ink: #1a1a1a;
+  --red: #c0392b;
+  --red-dark: #a93226;
+  --grey-100: #f7f5ef;
+  --grey-200: #f0ede7;
+  --grey-300: #e8e4dc;
+  --grey-400: #ddd;
+  --grey-500: #bbb;
+  --grey-600: #999;
+  --grey-700: #777;
+  --grey-800: #555;
+  --grey-900: #333;
+}
+
+html { background: var(--cream); }
+body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); }
+
+/* Typography */
+.font-display { font-family: 'Playfair Display', Georgia, serif; }
+.font-body { font-family: 'Source Serif 4', Georgia, serif; }
+.font-ui { font-family: 'IBM Plex Sans', sans-serif; }
+
+/* Insight separators */
+.insight-divider {
+  width: 20px;
+  height: 1.5px;
+  background: var(--red);
+  opacity: 0.4;
+  margin: 24px 0;
+}
+
+/* Pull quote */
+.pull-quote {
+  border-top: 2px solid var(--red);
+  border-bottom: 2px solid var(--red);
+  padding: 24px 0;
+  text-align: center;
+}
+
+/* Smooth transitions */
+* { transition-property: color, background-color, border-color, opacity; transition-duration: 0.2s; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--grey-400); border-radius: 3px; }
