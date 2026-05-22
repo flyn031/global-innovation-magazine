@@ -113,7 +113,7 @@ export default function HomePage() {
                 />
               </div>
             )}
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="font-ui text-[10px] font-semibold tracking-[0.1em] uppercase text-[var(--red)]">
                 {interview.category}
               </span>
@@ -121,6 +121,14 @@ export default function HomePage() {
               <span className="font-display text-[10px] italic text-[var(--grey-500)]">
                 10 Things I Know
               </span>
+              {interview.archive && (
+                <>
+                  <span className="font-ui text-[10px] text-[var(--grey-400)]">·</span>
+                  <span className="font-ui text-[9px] font-semibold tracking-[0.06em] uppercase text-[var(--grey-600)] bg-[var(--grey-200)] px-1.5 py-0.5 rounded-sm">
+                    Archive
+                  </span>
+                </>
+              )}
             </div>
             <h3 className="font-display text-[19px] font-extrabold text-[var(--ink)] leading-tight mb-0.5">
               {interview.name}
