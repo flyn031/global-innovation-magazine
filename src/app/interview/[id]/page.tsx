@@ -35,13 +35,18 @@ export default async function InterviewPage({ params }: Props) {
           }`}
         >
           {interview.photo && (
-            <div className="w-full aspect-[4/5] rounded-sm overflow-hidden bg-[var(--grey-300)]">
+            <div className="w-full aspect-[4/5] rounded-sm overflow-hidden bg-[var(--grey-300)] relative">
               <img
                 src={interview.photo}
                 alt={interview.name}
                 className="w-full h-full object-cover"
                 style={{ filter: "grayscale(15%)" }}
               />
+              {interview.id === "boyan-slat" && (
+                <span className="absolute bottom-2 right-2 font-ui text-[9px] text-white/70 bg-black/40 px-1.5 py-0.5 rounded-sm">
+                  Photo: The Ocean Cleanup
+                </span>
+              )}
             </div>
           )}
           <div>
