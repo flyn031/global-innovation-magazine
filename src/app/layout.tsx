@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Global Innovation Magazine — 10 Things I Know",
   description:
     "Innovation-focused interviews with founders, leaders and innovators. Est. 2013, Leicester, UK.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Global Innovation Magazine",
     description: "10 Things I Know — interviews with the people shaping innovation.",

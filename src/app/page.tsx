@@ -91,7 +91,7 @@ export default function HomePage() {
       {/* Section header */}
       <div className="max-w-[1100px] mx-auto px-4 sm:px-8 pt-7">
         <h2 className="font-display text-base font-bold text-[var(--ink)] mb-6 pb-2 border-b-2 border-[var(--ink)] inline-block">
-          Recent Interviews
+          Interviews
         </h2>
       </div>
 
@@ -122,9 +122,12 @@ export default function HomePage() {
                 10 Things I Know
               </span>
             </div>
-            <h3 className="font-display text-[19px] font-extrabold text-[var(--ink)] leading-tight mb-1.5">
-              {interview.name}, {interview.role.toLowerCase()}
+            <h3 className="font-display text-[19px] font-extrabold text-[var(--ink)] leading-tight mb-0.5">
+              {interview.name}
             </h3>
+            <div className="font-ui text-[12px] text-[var(--grey-600)] mb-1.5">
+              {interview.role}, {interview.company}
+            </div>
             <p className="font-body text-sm leading-snug text-[var(--grey-600)] italic mb-2">
               {interview.subheadline}
             </p>

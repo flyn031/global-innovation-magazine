@@ -22,10 +22,12 @@ export default function AboutPage() {
           talking to the people making it happen.
         </p>
         <p>
-          Over the years we interviewed and worked with some remarkable companies
-          — Airbnb, Thomson Reuters, Team Sky, Virgin Formula E, and many
-          others. The questions didn&apos;t change much, but the answers were
-          always different. That was the whole point.
+          Over the years we interviewed and worked with some remarkable
+          companies and individuals — Airbnb, Thomson Reuters, DP World,
+          Brompton Bicycle, Synechron, Specialized Bikes, The Ocean Cleanup,
+          Team Sky, Virgin Formula E, Globant, and many others. The questions
+          didn&apos;t change much, but the answers were always different. That
+          was the whole point.
         </p>
         <p>
           Our &ldquo;10 Things I Know&rdquo; interviews are built around ten
