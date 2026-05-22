@@ -33,7 +33,7 @@ export default function PartnersPage() {
           audience grows.
         </p>
         <a
-          href="mailto:partners@globalinnovationmagazine.com?subject=Founding%20Partner%20Enquiry"
+          href="mailto:james@globalinnovationmagazine.com?subject=Founding%20Partner%20Enquiry"
           className="inline-block bg-[var(--ink)] hover:bg-[var(--grey-900)] text-[var(--cream)] no-underline px-6 py-2.5 rounded-sm font-ui text-[13px] font-semibold"
         >
           Enquire About Partnership
@@ -74,7 +74,7 @@ export default function PartnersPage() {
             </div>
           </div>
           <a
-            href="mailto:partners@globalinnovationmagazine.com?subject=Founding%20Partner%20Enquiry"
+            href="mailto:james@globalinnovationmagazine.com?subject=Founding%20Partner%20Enquiry"
             className="bg-[var(--red)] hover:bg-[var(--red-dark)] text-white no-underline px-5 py-2.5 rounded-sm font-ui text-[13px] font-semibold"
           >
             Become a Partner →

@@ -40,7 +40,7 @@ const TIERS = [
       "Permanent dofollow backlink to your site",
     ],
     cta: "Apply to Be Featured",
-    ctaHref: "mailto:featured@globalinnovationmagazine.com?subject=Featured%20Interview%20Application&body=Hi%2C%0A%0AI'd%20like%20to%20apply%20for%20a%20Featured%20Interview.%0A%0AName%3A%0ACompany%3A%0ARole%3A%0AWebsite%3A%0A%0AWhat%20makes%20your%20story%20interesting%3A%0A",
+    ctaHref: "mailto:james@globalinnovationmagazine.com?subject=Featured%20Interview%20Application&body=Hi%2C%0A%0AI'd%20like%20to%20apply%20for%20a%20Featured%20Interview.%0A%0AName%3A%0ACompany%3A%0ARole%3A%0AWebsite%3A%0A%0AWhat%20makes%20your%20story%20interesting%3A%0A",
     highlight: true,
   },
   {
@@ -58,7 +58,7 @@ const TIERS = [
       "Priority placement in interview grid",
     ],
     cta: "Become a Partner",
-    ctaHref: "mailto:partners@globalinnovationmagazine.com?subject=Innovation%20Partner%20Enquiry&body=Hi%2C%0A%0AWe're%20interested%20in%20becoming%20an%20Innovation%20Partner.%0A%0ACompany%3A%0AWebsite%3A%0AWhat%20you're%20looking%20for%3A%0A",
+    ctaHref: "mailto:james@globalinnovationmagazine.com?subject=Innovation%20Partner%20Enquiry&body=Hi%2C%0A%0AWe're%20interested%20in%20becoming%20an%20Innovation%20Partner.%0A%0ACompany%3A%0AWebsite%3A%0AWhat%20you're%20looking%20for%3A%0A",
     highlight: false,
   },
 ];

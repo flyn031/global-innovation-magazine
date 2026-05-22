@@ -124,10 +124,10 @@ export default function TermsPage() {
             For any questions about these terms, to request removal of content, or
             for any other enquiries, please contact us at{" "}
             <a
-              href="mailto:hello@globalinnovationmagazine.com"
+              href="mailto:james@globalinnovationmagazine.com"
               className="text-[var(--red)] underline"
             >
-              hello@globalinnovationmagazine.com
+              james@globalinnovationmagazine.com
             </a>
           </p>
         </section>

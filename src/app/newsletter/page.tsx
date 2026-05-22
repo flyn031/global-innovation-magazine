@@ -64,7 +64,7 @@ export default function NewsletterPage() {
           accept one sponsor per issue. If you build tools, platforms, or
           services for founders and innovators,{" "}
           <a
-            href="mailto:newsletter@globalinnovationmagazine.com?subject=Newsletter%20Sponsorship"
+            href="mailto:james@globalinnovationmagazine.com?subject=Newsletter%20Sponsorship"
             className="text-[var(--red)] underline"
           >
             get in touch
