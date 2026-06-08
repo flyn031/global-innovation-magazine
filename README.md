@@ -1,57 +1,36 @@
-# Global Innovation Magazine
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-**10 Things I Know** — innovation-focused interviews, est. 2013 Leicester UK.
+## Getting Started
 
-## Quick Start
+First, run the development server:
 
 ```bash
-git clone <your-repo>
-cd global-innovation-magazine
-npm install
-cp .env.example .env.local    # add your Anthropic API key
-npm run dev                    # http://localhost:3000
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Deploy to Railway
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. Push to GitHub
-2. Go to [railway.app](https://railway.app) → New Project → Deploy from GitHub
-3. Add environment variable: `ANTHROPIC_API_KEY`
-4. Railway auto-detects Next.js — builds and deploys automatically
-5. Add custom domain in Railway settings → point your 123-reg domain there
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Domain Setup (123-reg → Railway)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-1. In Railway: Settings → Domains → Add custom domain → `globalinnovationmagazine.com`
-2. Railway gives you a CNAME target (something like `xxx.up.railway.app`)
-3. In 123-reg DNS settings:
-   - Delete any existing A records for `@`
-   - Add CNAME: `www` → `xxx.up.railway.app`
-   - Add CNAME: `@` → `xxx.up.railway.app` (or use ALIAS if available)
-4. Wait 5-30 mins for DNS propagation
+## Learn More
 
-## Stack
+To learn more about Next.js, take a look at the following resources:
 
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS + custom CSS variables
-- **Fonts**: Playfair Display, IBM Plex Sans, Source Serif 4
-- **AI**: Claude API (Sonnet) for article generation
-- **Hosting**: Railway (hobby plan)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Project Structure
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```
-src/
-├── app/
-│   ├── page.tsx              # Homepage with interview grid
-│   ├── layout.tsx            # Root layout + fonts + nav
-│   ├── about/page.tsx        # About page
-│   ├── contribute/page.tsx   # 10 Things I Know submission form
-│   ├── interview/[id]/       # Individual interview pages (SSG)
-│   └── api/generate/route.ts # Claude API endpoint
-├── components/
-│   └── Nav.tsx               # Navbar
-└── lib/
-    ├── interviews.ts         # Interview data + types
-    └── questions.ts          # Questions + categories
-```
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -14,47 +14,35 @@ const links = [
 export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 border-b border-[var(--grey-300)] backdrop-blur-md transition-colors ${
-        scrolled ? "bg-[var(--cream)]/97" : "bg-[var(--cream)]/85"
-      }`}
-    >
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 flex items-center justify-between h-14">
-        <Link href="/" className="flex items-baseline gap-0 no-underline">
-          <span className="font-display text-[19px] font-black text-[var(--ink)] tracking-tight">
-            Global Innovation
-          </span>
-          <span className="font-ui text-[9px] font-semibold text-[var(--red)] tracking-[0.12em] uppercase ml-1.5">
-            Magazine
-          </span>
+    <nav style={{
+      position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+      background: scrolled ? "rgba(252,250,247,0.97)" : "rgba(252,250,247,0.85)",
+      backdropFilter: "blur(12px)", borderBottom: "1px solid #e8e4dc",
+    }}>
+      <div style={{
+        maxWidth: 1100, margin: "0 auto", padding: "0 clamp(16px,4vw,40px)",
+        display: "flex", alignItems: "center", justifyContent: "space-between", height: 56,
+      }}>
+        <Link href="/" style={{ display: "flex", alignItems: "baseline", textDecoration: "none" }}>
+          <span style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 19, fontWeight: 900, color: "#1a1a1a", letterSpacing: "-0.02em" }}>Global Innovation</span>
+          <span style={{ fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 9, fontWeight: 600, color: "#c0392b", letterSpacing: "0.12em", textTransform: "uppercase", marginLeft: 6 }}>Magazine</span>
         </Link>
-        <div className="flex items-center gap-5">
-          {links.map((l) => {
-            const active =
-              l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
-            const isGetFeatured = l.href === "/get-featured";
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          {links.map(l => {
+            const active = l.href === "/" ? pathname === "/" : pathname.startsWith(l.href);
             return (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={`font-ui text-[13px] no-underline pb-0.5 border-b-[1.5px] ${
-                  isGetFeatured
-                    ? "font-semibold text-[var(--red)] border-transparent hover:border-[var(--red)]"
-                    : active
-                    ? "font-semibold text-[var(--ink)] border-[var(--red)]"
-                    : "font-normal text-[var(--grey-600)] border-transparent hover:text-[var(--ink)]"
-                }`}
-              >
-                {l.label}
-              </Link>
+              <Link key={l.href} href={l.href} style={{
+                fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 13, textDecoration: "none",
+                paddingBottom: 2, borderBottom: active ? "1.5px solid #c0392b" : "1.5px solid transparent",
+                fontWeight: active ? 600 : 400,
+                color: l.href === "/get-featured" ? "#c0392b" : active ? "#1a1a1a" : "#888",
+              }}>{l.label}</Link>
             );
           })}
         </div>
