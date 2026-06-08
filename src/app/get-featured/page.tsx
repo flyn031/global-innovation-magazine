@@ -1,58 +1,192 @@
-import Link from "next/link";
-import SubscribeForm from "@/components/SubscribeForm";
+// app/get-featured/page.tsx
+// Global Innovation Magazine — "Get Featured" pricing page (cream editorial style)
+//
+// SETUP (one-time):
+// 1. Replace the two Stripe URLs below with your real Payment Links from
+//    the Stripe dashboard (they look like https://buy.stripe.com/xxxx).
+// 2. In each Payment Link's settings in Stripe, set "After payment" to
+//    redirect to https://www.globalinnovationmagazine.com (your homepage)
+//    and enable "Collect customer name and email".
+//
+// No API keys or server code needed for this version.
 
-const TIERS = [
-  { name: "Community", price: "Free", note: "always", highlight: false, cta: "Submit Your Answers", ctaHref: "/contribute",
-    features: ["Submit your 10 Things I Know answers","Editorial review — published if selected","Listed in our interview archive","Shareable article link"] },
-  { name: "Featured", price: "£199", note: "one-off", highlight: true, cta: "Apply to Be Featured", ctaHref: `mailto:james@globalinnovationmagazine.com?subject=Featured%20Interview%20Application`,
-    features: ["Everything in Community, plus:","Guaranteed publication within 7 days","Professional editorial review & polish","Social media asset pack (LinkedIn, X)","Included in next newsletter","'Featured in GIM' badge for your site","SEO-optimised with your keywords","Permanent dofollow backlink"] },
-  { name: "Innovation Partner", price: "£499", note: "per quarter", highlight: false, cta: "Become a Partner", ctaHref: `mailto:james@globalinnovationmagazine.com?subject=Innovation%20Partner%20Enquiry`,
-    features: ["Everything in Featured, plus:","Logo on homepage partner strip","Sponsored slot in fortnightly newsletter","One featured interview per quarter","Early access to trend reports","Priority placement in interview grid"] },
+const STRIPE_FEATURED_URL = "https://buy.stripe.com/REPLACE_WITH_FEATURED_LINK";
+const STRIPE_PARTNER_URL = "https://buy.stripe.com/REPLACE_WITH_PARTNER_LINK";
+
+// Only list names you can point to a genuine published feature for.
+const ARCHIVE_NAMES = [
+  "DP World",
+  "Thomson Reuters",
+  "The Ocean Cleanup",
+  "Brompton Bicycle",
+  "Airbnb",
+  "Formula E",
+  "Mahindra Racing",
+  "Yes Bank India",
+];
+
+const tiers = [
+  {
+    name: "Community",
+    price: "Free",
+    cadence: "",
+    blurb: "Submit your answers. Published editorially if selected.",
+    features: [
+      "Answer the 10 questions",
+      "Considered for editorial publication",
+      "Part of the Global Innovation community",
+    ],
+    cta: "Submit your story",
+    href: "/contribute",
+    featured: false,
+  },
+  {
+    name: "Featured",
+    price: "£199",
+    cadence: "one-off",
+    blurb:
+      "Your profile, permanently, alongside the names that built this magazine.",
+    features: [
+      "Guaranteed publication within 7 days",
+      "Shareable social assets, designed for you",
+      "Inclusion in the newsletter",
+      "Featured badge + permanent backlink",
+      "A feature you keep and share forever",
+    ],
+    cta: "Get Featured",
+    href: STRIPE_FEATURED_URL,
+    featured: true,
+  },
+  {
+    name: "Innovation Partner",
+    price: "£499",
+    cadence: "per quarter",
+    blurb: "For companies that want a standing presence in the magazine.",
+    features: [
+      "Everything in Featured",
+      "Your logo on the homepage",
+      "Newsletter sponsor slot",
+      "A fresh interview every quarter",
+      "Priority editorial support",
+    ],
+    cta: "Become a Partner",
+    href: STRIPE_PARTNER_URL,
+    featured: false,
+  },
 ];
 
 export default function GetFeaturedPage() {
-  const h3s: React.CSSProperties = { fontFamily: "'Playfair Display',Georgia,serif", fontWeight: 700, color: "#1a1a1a", marginBottom: 6 };
   return (
-    <>
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "48px clamp(16px,4vw,40px) 40px", textAlign: "center" }}>
-        <span style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 12, fontStyle: "italic", color: "#c0392b" }}>Get Featured</span>
-        <h1 style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: "clamp(32px,5vw,48px)", fontWeight: 900, color: "#1a1a1a", margin: "8px 0 16px", letterSpacing: "-0.025em", lineHeight: 1.1 }}>Your story, professionally told.</h1>
-        <p style={{ fontFamily: "'Source Serif 4',Georgia,serif", fontSize: 18, color: "#777", fontStyle: "italic", maxWidth: 560, margin: "0 auto 32px" }}>A "10 Things I Know" feature gives you a professionally written interview you can share with investors, clients, and your network.</p>
-        <div style={{ display: "flex", justifyContent: "center", gap: 40, marginBottom: 40 }}>
-          {[{s:"2013",l:"Publishing since"},{s:"50+",l:"Companies featured"},{s:"10",l:"Questions, always"}].map(s => (
-            <div key={s.l}><div style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 28, fontWeight: 900, color: "#1a1a1a" }}>{s.s}</div><div style={{ fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 11, color: "#999" }}>{s.l}</div></div>
-          ))}
-        </div>
-      </div>
+    <main className="min-h-screen bg-[#f4f1ea] text-[#2b2926]">
+      <section className="mx-auto max-w-5xl px-6 pt-24 pb-10 text-center">
+        <p className="mb-5 text-xs uppercase tracking-[0.35em] text-[#9a7a2e]">
+          Established 2013
+        </p>
+        <h1 className="mx-auto max-w-3xl font-serif text-4xl leading-tight text-[#1c1a17] sm:text-5xl">
+          Be featured alongside the world&rsquo;s innovators.
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#4a4742]">
+          Global Innovation Magazine profiles the people building the future.
+          Add your story to the same pages &mdash; published, shareable, and
+          yours to keep.
+        </p>
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(16px,4vw,40px) 60px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 20 }}>
-        {TIERS.map(t => (
-          <div key={t.name} style={{ background: t.highlight ? "#1a1a1a" : "#fff", border: t.highlight ? "none" : "1px solid #e8e4dc", borderRadius: 4, padding: 28, display: "flex", flexDirection: "column", position: "relative" }}>
-            {t.highlight && <div style={{ position: "absolute", top: -12, left: 24, background: "#c0392b", color: "#fff", fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 10px", borderRadius: 2 }}>Most Popular</div>}
-            <h3 style={{ ...h3s, fontSize: 18, color: t.highlight ? "#fcfaf7" : "#1a1a1a", margin: "0 0 4px" }}>{t.name}</h3>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 8 }}>
-              <span style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 30, fontWeight: 900, color: t.highlight ? "#fcfaf7" : "#1a1a1a" }}>{t.price}</span>
-              <span style={{ fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 12, color: t.highlight ? "rgba(252,250,247,0.45)" : "#aaa" }}>{t.note}</span>
-            </div>
-            <ul style={{ flex: 1, listStyle: "none", padding: 0, margin: "0 0 24px" }}>
-              {t.features.map((f,i) => (
-                <li key={i} style={{ fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 13, color: t.highlight ? (i===0?"rgba(252,250,247,0.4)":"rgba(252,250,247,0.8)") : (i===0&&t.name!=="Community"?"#aaa":"#555"), padding: "4px 0", fontStyle: i===0&&t.name!=="Community"?"italic":"normal" }}>
-                  {(i>0||t.name==="Community") && <span style={{ color: "#c0392b", marginRight: 8 }}>✓</span>}{f}
-                </li>
-              ))}
-            </ul>
-            <a href={t.ctaHref} style={{ display: "block", textAlign: "center", textDecoration: "none", padding: "11px 0", borderRadius: 3, fontFamily: "'IBM Plex Sans',sans-serif", fontSize: 13, fontWeight: 600, background: t.highlight ? "#c0392b" : t.name==="Community" ? "#1a1a1a" : "transparent", color: t.highlight||t.name==="Community" ? "#fff" : "#1a1a1a", border: t.name==="Innovation Partner" ? "1px solid #ddd" : "none" }}>{t.cta}</a>
+        <div className="mt-9">
+          <p className="text-[11px] uppercase tracking-[0.25em] text-[#8a857c]">
+            Past features include
+          </p>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-[#3a3833]">
+            {ARCHIVE_NAMES.map((name, i) => (
+              <span key={name} className="whitespace-nowrap">
+                {name}
+                {i < ARCHIVE_NAMES.length - 1 && (
+                  <span className="ml-4 text-[#c9c2b4]">&middot;</span>
+                )}
+              </span>
+            ))}
           </div>
-        ))}
-      </div>
-
-      <div style={{ borderTop: "1px solid #e8e4dc" }}>
-        <div style={{ maxWidth: 500, margin: "0 auto", padding: "48px clamp(16px,4vw,40px)", textAlign: "center" }}>
-          <h3 style={{ fontFamily: "'Playfair Display',Georgia,serif", fontSize: 18, fontWeight: 700, color: "#1a1a1a", margin: "0 0 6px" }}>Not ready yet? Stay in the loop.</h3>
-          <p style={{ fontFamily: "'Source Serif 4',Georgia,serif", fontSize: 14, color: "#aaa", fontStyle: "italic", margin: "0 0 16px" }}>Get every interview in your inbox. Free, fortnightly.</p>
-          <SubscribeForm source="get-featured-page" />
         </div>
-      </div>
-    </>
+      </section>
+
+      <section className="mx-auto grid max-w-5xl gap-6 px-6 pb-16 md:grid-cols-3">
+        {tiers.map((tier) => {
+          const isExternal = tier.href.startsWith("http");
+          return (
+            <div
+              key={tier.name}
+              className={[
+                "relative flex flex-col rounded-2xl p-8",
+                tier.featured
+                  ? "border-2 border-[#c5a059] bg-[#fffdf8] shadow-sm"
+                  : "border border-[#e0dace] bg-white",
+              ].join(" ")}
+            >
+              {tier.featured && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#c5a059] px-4 py-1 text-xs font-semibold uppercase tracking-wider text-[#1c1a17]">
+                  Most chosen
+                </span>
+              )}
+
+              <h2 className="font-serif text-2xl text-[#1c1a17]">
+                {tier.name}
+              </h2>
+
+              <div className="mt-4 flex items-baseline gap-2">
+                <span className="text-4xl font-semibold text-[#1c1a17]">
+                  {tier.price}
+                </span>
+                {tier.cadence && (
+                  <span className="text-sm text-[#8a857c]">{tier.cadence}</span>
+                )}
+              </div>
+
+              <p className="mt-4 text-sm leading-relaxed text-[#4a4742]">
+                {tier.blurb}
+              </p>
+
+              <ul className="mt-6 flex-1 space-y-3 text-sm text-[#34322e]">
+                {tier.features.map((f) => (
+                  <li key={f} className="flex gap-3">
+                    <span className="mt-0.5 text-[#9a7a2e]">&#10003;</span>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={tier.href}
+                {...(isExternal
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className={[
+                  "mt-8 inline-flex items-center justify-center rounded-lg px-5 py-3 text-sm font-semibold transition-colors",
+                  tier.featured
+                    ? "bg-[#1c1a17] text-[#f4f1ea] hover:bg-[#33302b]"
+                    : "border border-[#c9c2b4] text-[#2b2926] hover:border-[#9a7a2e] hover:text-[#9a7a2e]",
+                ].join(" ")}
+              >
+                {tier.cta}
+              </a>
+            </div>
+          );
+        })}
+      </section>
+
+      <section className="mx-auto max-w-2xl px-6 pb-24 text-center">
+        <p className="text-xs text-[#8a857c]">
+          Past editorial features. Inclusion does not imply endorsement of paid
+          services.
+        </p>
+        <p className="mt-4 text-sm text-[#4a4742]">
+          Questions, or a paid enquiry?{" "}
+          <a
+            href="mailto:james@globalinnovationmagazine.com"
+            className="text-[#9a7a2e] underline-offset-4 hover:underline"
+          >
+            james@globalinnovationmagazine.com
+          </a>
+        </p>
+      </section>
+    </main>
   );
 }
